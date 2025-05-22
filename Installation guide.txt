@@ -1,0 +1,44 @@
+-- Step 1: Create the Database
+CREATE DATABASE food_calories_prediction;
+USE food_calories_prediction;
+
+-- Step 2: Create the registration Table
+CREATE TABLE registration (
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    contact VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Step 3: Create the user_profile Table
+CREATE TABLE user_profile (
+    email VARCHAR(100) NOT NULL PRIMARY KEY,
+    age INT(11) NOT NULL,
+    height FLOAT NOT NULL,
+    weight FLOAT NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    activity VARCHAR(100) NOT NULL,
+    daily_calories FLOAT NOT NULL
+);
+
+-- Step 4: Create the food_items Table
+CREATE TABLE food_items (
+    food_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    calories DECIMAL(10,2) NOT NULL,
+    protein DECIMAL(10,2) NOT NULL,
+    carbs DECIMAL(10,2) NOT NULL,
+    fats DECIMAL(10,2) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    image_url VARCHAR(255) NOT NULL
+);
+
+-- Step 5: Create the user_meals Table
+CREATE TABLE user_meals (
+    meal_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_email VARCHAR(255) NOT NULL,
+    food_id INT(11) NOT NULL,
+    date DATE NOT NULL,
+    meal_type ENUM('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
+    serving_size DECIMAL(10,2) NOT NULL DEFAULT 1.00
+);
